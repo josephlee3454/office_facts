@@ -1,5 +1,6 @@
-from django.shortcuts import render
+# from django.shortcuts import render
 from rest_framework import generics
+from .permissions import IsAuthorOrReadOnly
 from .serializer import OfficeFactSerializer
 from .models import Office_facts
 
