@@ -5,33 +5,23 @@ services:
   web:
     build: .
     # command: python /code/manage.py runserver 0.0.0.0:8000
-    command: gunicorn office_facts.wsgi:application --bind 0.0.0.0:8000 --workers 4
+    command: gunicorn office.wsgi:application --bind 0.0.0.0:8000 --workers 4
     volumes:
       - .:/code
     ports:
       - 8000:8000
-#    depends_on:
-#    - db
-#
-#  db:
-#    image: postgres:11
-#    environment:
-#      - POSTGRES_DB=postgres
-#      - POSTGRES_USER=postgres
-#      - POSTGRES_PASSWORD=postgres
-#    volumes:
-#        - postgres_data:/var/lib/postgresql/data/
-#
-#volumes:
-#    postgres_data:
-STATIC_DIR = os.path.join(BASE_DIR, 'static')
-STATIC_ROOT = os.path.join(BASE_DIR, 'staticfiles')
-STATIC_URL = '/static/'
-STATICFILES_DIRS = [
-  STATIC_DIR,
-]
-  volumes:
-        - postgres_data:/var/lib/postgresql/data/
+    depends_on: 
+    - db
 
+  db:
+    image: postgres:11
+    volumes:
+        - postgres_data:/var/lib/postgresql/data/
+    environment:
+      - POSTGRES_PASSWORD=postgres
 volumes:
-  postgres_data:
+    postgres_data:
+  
+  
+
+
