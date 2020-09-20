@@ -1,5 +1,5 @@
   
-version: '3'
+version: '3.8'
 
 services:
   web:
@@ -9,9 +9,9 @@ services:
     volumes:
       - .:/code
     ports:
-      - 8000:8000
+      - 8001:8000
     depends_on: 
-    - db
+      - db
 
   db:
     image: postgres:11
